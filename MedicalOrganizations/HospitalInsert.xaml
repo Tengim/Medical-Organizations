@@ -1,0 +1,32 @@
+﻿<Window x:Class="MedicalOrganizations.HospitalInsert"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MedicalOrganizations"
+        mc:Ignorable="d"
+        Title="HospitalInsert" Height="300" Width="800" Background="#FF1D1D1D">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="0.6*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.4*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Больница"/>
+        <TextBox x:Name="Name" Grid.Column="1" Margin="10,0" VerticalAlignment="Center"  Style="{StaticResource CustomBlock}" FontSize="20"/>
+        <Label Grid.Row="1" Content="Адресс"/>
+        <TextBox x:Name="Adress" Grid.Column="1" Grid.Row="1" Margin="10,0" VerticalAlignment="Center" Style="{StaticResource CustomBlock}" FontSize="20"/>
+        <Grid Grid.Column="1" Grid.Row="3" Margin="10,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Content="Потвердить" Margin="0,8,3,8" FontSize="20" Style="{StaticResource CustomButtonStyle}" Click="Accept"/>
+            <Button Content="Отмена" Margin="0,8" Grid.Column="1" FontSize="20" Style="{StaticResource CustomButtonStyle}" Click="Canel"/>
+        </Grid>
+    </Grid>
+</Window>

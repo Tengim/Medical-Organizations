@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище MedicalOrganizationsModelContainer" CdmEntityContainer="MedicalOrganizationsEntities1">
+    <EntitySetMapping Name="Bolezn">
+      <EntityTypeMapping TypeName="MedicalOrganizationsModel.Bolezn">
+        <MappingFragment StoreEntitySet="Bolezn">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IdOtdelenie" ColumnName="IdOtdelenie" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Corpus">
+      <EntityTypeMapping TypeName="MedicalOrganizationsModel.Corpus">
+        <MappingFragment StoreEntitySet="Corpus">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IdHospital" ColumnName="IdHospital" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Degree">
+      <EntityTypeMapping TypeName="MedicalOrganizationsModel.Degree">
+        <MappingFragment StoreEntitySet="Degree">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Doctor">
+      <EntityTypeMapping TypeName="MedicalOrganizationsModel.Doctor">
+        <MappingFragment StoreEntitySet="Doctor">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Specialization" ColumnName="Specialization" />
+          <ScalarProperty Name="Degree" ColumnName="Degree" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DoctorH">
+      <EntityTypeMapping TypeName="MedicalOrganizationsModel.DoctorH">
+        <MappingFragment StoreEntitySet="DoctorH">
+          <ScalarProperty Name="idDoctor" ColumnName="idDoctor" />
+          <ScalarProperty Name="idHospital" ColumnName="idHospital" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DoctorP">
+      <EntityTypeMapping TypeName="MedicalOrganizationsModel.DoctorP">
+        <MappingFragment StoreEntitySet="DoctorP">
+          <ScalarProperty Name="idDoctor" ColumnName="idDoctor" />
+          <ScalarProperty Name="idHospital" ColumnName="idHospital" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Hospital">
+      <EntityTypeMapping TypeName="MedicalOrganizationsModel.Hospital">
+        <MappingFragment StoreEntitySet="Hospital">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Adress" ColumnName="Adress" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Karta">
+      <EntityTypeMapping TypeName="MedicalOrganizationsModel.Karta">
+        <MappingFragment StoreEntitySet="Karta">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Vrema_Postuplenia" ColumnName="Vrema_Postuplenia" />
+          <ScalarProperty Name="Vrema_Vipiski" ColumnName="Vrema_Vipiski" />
+          <ScalarProperty Name="IdBolezni" ColumnName="IdBolezni" />
+          <ScalarProperty Name="IdPatcient" ColumnName="IdPatcient" />
+          <ScalarProperty Name="IdDoctor" ColumnName="IdDoctor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Otdelenie">
+      <EntityTypeMapping TypeName="MedicalOrganizationsModel.Otdelenie">
+        <MappingFragment StoreEntitySet="Otdelenie">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="NumberPalants" ColumnName="NumberPalants" />
+          <ScalarProperty Name="NumberBads" ColumnName="NumberBads" />
+          <ScalarProperty Name="IdCorpus" ColumnName="IdCorpus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Patcient">
+      <EntityTypeMapping TypeName="MedicalOrganizationsModel.Patcient">
+        <MappingFragment StoreEntitySet="Patcient">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IdOtdelenie" ColumnName="IdOtdelenie" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Policlinic">
+      <EntityTypeMapping TypeName="MedicalOrganizationsModel.Policlinic">
+        <MappingFragment StoreEntitySet="Policlinic">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="idHospital" ColumnName="idHospital" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

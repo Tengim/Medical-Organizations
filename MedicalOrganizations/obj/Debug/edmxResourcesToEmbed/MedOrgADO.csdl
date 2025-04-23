@@ -1,0 +1,269 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MedicalOrganizationsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Bolezn">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IdOtdelenie" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Otdelenie" Relationship="Self.FK__Bolezn__IdOtdele__038683F8" FromRole="Bolezn" ToRole="Otdelenie" />
+    <NavigationProperty Name="Karta" Relationship="Self.FK__Karta__IdBolezni__0D0FEE32" FromRole="Bolezn" ToRole="Karta" />
+  </EntityType>
+  <EntityType Name="Corpus">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IdHospital" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Hospital" Relationship="Self.FK__Corpus__IdHospit__7DCDAAA2" FromRole="Corpus" ToRole="Hospital" />
+    <NavigationProperty Name="Otdelenie" Relationship="Self.FK__Otdelenie__IdCor__00AA174D" FromRole="Corpus" ToRole="Otdelenie" />
+  </EntityType>
+  <EntityType Name="Degree">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Doctor" Relationship="Self.FK__Doctor__Degree__084B3915" FromRole="Degree" ToRole="Doctor" />
+  </EntityType>
+  <EntityType Name="Doctor">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Specialization" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Degree" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Degree1" Relationship="Self.FK__Doctor__Degree__084B3915" FromRole="Doctor" ToRole="Degree" />
+  </EntityType>
+  <EntityType Name="DoctorH">
+    <Key>
+      <PropertyRef Name="idDoctor" />
+    </Key>
+    <Property Name="idDoctor" Type="Int32" Nullable="false" />
+    <Property Name="idHospital" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Hospital" Relationship="Self.FK__DoctorH__idHospi__13BCEBC1" FromRole="DoctorH" ToRole="Hospital" />
+  </EntityType>
+  <EntityType Name="DoctorP">
+    <Key>
+      <PropertyRef Name="idDoctor" />
+    </Key>
+    <Property Name="idDoctor" Type="Int32" Nullable="false" />
+    <Property Name="idHospital" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Policlinic" Relationship="Self.FK__DoctorP__idHospi__1699586C" FromRole="DoctorP" ToRole="Policlinic" />
+  </EntityType>
+  <EntityType Name="Hospital">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Adress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Corpus" Relationship="Self.FK__Corpus__IdHospit__7DCDAAA2" FromRole="Hospital" ToRole="Corpus" />
+    <NavigationProperty Name="DoctorH" Relationship="Self.FK__DoctorH__idHospi__13BCEBC1" FromRole="Hospital" ToRole="DoctorH" />
+    <NavigationProperty Name="Policlinic" Relationship="Self.FK__Policlini__idHos__10E07F16" FromRole="Hospital" ToRole="Policlinic" />
+  </EntityType>
+  <EntityType Name="Karta">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Vrema_Postuplenia" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Vrema_Vipiski" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IdBolezni" Type="Int32" Nullable="false" />
+    <Property Name="IdPatcient" Type="Int32" Nullable="false" />
+    <Property Name="IdDoctor" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Bolezn" Relationship="Self.FK__Karta__IdBolezni__0D0FEE32" FromRole="Karta" ToRole="Bolezn" />
+    <NavigationProperty Name="Patcient" Relationship="Self.FK__Karta__IdPatcien__0E04126B" FromRole="Karta" ToRole="Patcient" />
+  </EntityType>
+  <EntityType Name="Otdelenie">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NumberPalants" Type="Int32" />
+    <Property Name="NumberBads" Type="Int32" />
+    <Property Name="IdCorpus" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Bolezn" Relationship="Self.FK__Bolezn__IdOtdele__038683F8" FromRole="Otdelenie" ToRole="Bolezn" />
+    <NavigationProperty Name="Corpus" Relationship="Self.FK__Otdelenie__IdCor__00AA174D" FromRole="Otdelenie" ToRole="Corpus" />
+  </EntityType>
+  <EntityType Name="Patcient">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IdOtdelenie" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Karta" Relationship="Self.FK__Karta__IdPatcien__0E04126B" FromRole="Patcient" ToRole="Karta" />
+  </EntityType>
+  <EntityType Name="Policlinic">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idHospital" Type="Int32" />
+    <NavigationProperty Name="DoctorP" Relationship="Self.FK__DoctorP__idHospi__1699586C" FromRole="Policlinic" ToRole="DoctorP" />
+    <NavigationProperty Name="Hospital" Relationship="Self.FK__Policlini__idHos__10E07F16" FromRole="Policlinic" ToRole="Hospital" />
+  </EntityType>
+  <Association Name="FK__Bolezn__IdOtdele__038683F8">
+    <End Role="Otdelenie" Type="Self.Otdelenie" Multiplicity="1" />
+    <End Role="Bolezn" Type="Self.Bolezn" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Otdelenie">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Bolezn">
+        <PropertyRef Name="IdOtdelenie" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Karta__IdBolezni__0D0FEE32">
+    <End Role="Bolezn" Type="Self.Bolezn" Multiplicity="1" />
+    <End Role="Karta" Type="Self.Karta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bolezn">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Karta">
+        <PropertyRef Name="IdBolezni" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Corpus__IdHospit__7DCDAAA2">
+    <End Role="Hospital" Type="Self.Hospital" Multiplicity="1" />
+    <End Role="Corpus" Type="Self.Corpus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hospital">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Corpus">
+        <PropertyRef Name="IdHospital" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Otdelenie__IdCor__00AA174D">
+    <End Role="Corpus" Type="Self.Corpus" Multiplicity="1" />
+    <End Role="Otdelenie" Type="Self.Otdelenie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Corpus">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Otdelenie">
+        <PropertyRef Name="IdCorpus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Doctor__Degree__084B3915">
+    <End Role="Degree" Type="Self.Degree" Multiplicity="1" />
+    <End Role="Doctor" Type="Self.Doctor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Degree">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Doctor">
+        <PropertyRef Name="Degree" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DoctorH__idHospi__13BCEBC1">
+    <End Role="Hospital" Type="Self.Hospital" Multiplicity="1" />
+    <End Role="DoctorH" Type="Self.DoctorH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hospital">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="DoctorH">
+        <PropertyRef Name="idHospital" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DoctorP__idHospi__1699586C">
+    <End Role="Policlinic" Type="Self.Policlinic" Multiplicity="1" />
+    <End Role="DoctorP" Type="Self.DoctorP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Policlinic">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="DoctorP">
+        <PropertyRef Name="idHospital" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Policlini__idHos__10E07F16">
+    <End Role="Hospital" Type="Self.Hospital" Multiplicity="0..1" />
+    <End Role="Policlinic" Type="Self.Policlinic" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hospital">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Policlinic">
+        <PropertyRef Name="idHospital" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Karta__IdPatcien__0E04126B">
+    <End Role="Patcient" Type="Self.Patcient" Multiplicity="1" />
+    <End Role="Karta" Type="Self.Karta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patcient">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Karta">
+        <PropertyRef Name="IdPatcient" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MedicalOrganizationsEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Bolezn" EntityType="Self.Bolezn" />
+    <EntitySet Name="Corpus" EntityType="Self.Corpus" />
+    <EntitySet Name="Degree" EntityType="Self.Degree" />
+    <EntitySet Name="Doctor" EntityType="Self.Doctor" />
+    <EntitySet Name="DoctorH" EntityType="Self.DoctorH" />
+    <EntitySet Name="DoctorP" EntityType="Self.DoctorP" />
+    <EntitySet Name="Hospital" EntityType="Self.Hospital" />
+    <EntitySet Name="Karta" EntityType="Self.Karta" />
+    <EntitySet Name="Otdelenie" EntityType="Self.Otdelenie" />
+    <EntitySet Name="Patcient" EntityType="Self.Patcient" />
+    <EntitySet Name="Policlinic" EntityType="Self.Policlinic" />
+    <AssociationSet Name="FK__Bolezn__IdOtdele__038683F8" Association="Self.FK__Bolezn__IdOtdele__038683F8">
+      <End Role="Otdelenie" EntitySet="Otdelenie" />
+      <End Role="Bolezn" EntitySet="Bolezn" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Karta__IdBolezni__0D0FEE32" Association="Self.FK__Karta__IdBolezni__0D0FEE32">
+      <End Role="Bolezn" EntitySet="Bolezn" />
+      <End Role="Karta" EntitySet="Karta" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Corpus__IdHospit__7DCDAAA2" Association="Self.FK__Corpus__IdHospit__7DCDAAA2">
+      <End Role="Hospital" EntitySet="Hospital" />
+      <End Role="Corpus" EntitySet="Corpus" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Otdelenie__IdCor__00AA174D" Association="Self.FK__Otdelenie__IdCor__00AA174D">
+      <End Role="Corpus" EntitySet="Corpus" />
+      <End Role="Otdelenie" EntitySet="Otdelenie" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Doctor__Degree__084B3915" Association="Self.FK__Doctor__Degree__084B3915">
+      <End Role="Degree" EntitySet="Degree" />
+      <End Role="Doctor" EntitySet="Doctor" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DoctorH__idHospi__13BCEBC1" Association="Self.FK__DoctorH__idHospi__13BCEBC1">
+      <End Role="Hospital" EntitySet="Hospital" />
+      <End Role="DoctorH" EntitySet="DoctorH" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DoctorP__idHospi__1699586C" Association="Self.FK__DoctorP__idHospi__1699586C">
+      <End Role="Policlinic" EntitySet="Policlinic" />
+      <End Role="DoctorP" EntitySet="DoctorP" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Policlini__idHos__10E07F16" Association="Self.FK__Policlini__idHos__10E07F16">
+      <End Role="Hospital" EntitySet="Hospital" />
+      <End Role="Policlinic" EntitySet="Policlinic" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Karta__IdPatcien__0E04126B" Association="Self.FK__Karta__IdPatcien__0E04126B">
+      <End Role="Patcient" EntitySet="Patcient" />
+      <End Role="Karta" EntitySet="Karta" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
